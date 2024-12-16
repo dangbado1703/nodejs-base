@@ -1,11 +1,20 @@
-import express from "express";
-import { loginController } from "../controller/loginController";
-import { registerController } from "../controller/register.controller";
-import { loginValidate } from "../validate/login.validate";
-import { registerValidate } from "../validate/register.validate";
-const Router = express.Router();
+import { Router } from 'express';
+import {
+  loginController,
+  registerController,
+  updateUserController,
+} from '../controller/user.controller';
 
-Router.post("/login", loginValidate, loginController);
-Router.post('/register', registerValidate ,registerController)
+const router = Router();
 
-export default Router;
+router.post('/login', (req, res) => {
+  loginController(req, res);
+});
+router.post('/register', (req, res) => {
+  registerController(req, res);
+});
+router.post('/update-user', (req, res) => {
+  updateUserController(req, res);
+});
+
+export default router;
